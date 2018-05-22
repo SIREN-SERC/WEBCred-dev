@@ -8,6 +8,10 @@ name = "pypi"
 [packages]
 django = "*"
 "psycopg2-binary" = "*"
+huey = "*"
+python-dotenv = "*"
+dj-database-url = "*"
+redis = "*"
 
 [requires]
 python_version = "3.6"

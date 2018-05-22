@@ -13,17 +13,19 @@
             <h1 class="display-3">WEBCred</h1>
             <small>A tool to assess genre based web page credibility score</small>
         </div>
-        <form action="/assess" method="post">
+        <form action="{% url 'assess' %}" method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="urlInput">URL</label>
-                <input type="url" class="form-control" id="urlInput" required/>
+                <input type="url" class="form-control" id="url" name="url" required/>
             </div>
             <p>Genre</p>
             <div class="row">
                 <div class="col-3">
                     {% for genre in data.genres %}
                         <div class="form-check" onclick="populate_weights({{ genre }})">
-                            <input class="form-check-input" type="radio" name="genre" id="genre_{{ genre.name }}"/>
+                            <input class="form-check-input" type="radio" name="genre" id="genre_{{ genre.name }}"
+                                   value="{{ genre.name }}"/>
                             <label for="genre_{{ genre.name }}" class="radio_label"
                                    data-toggle="tooltip" data-placement="right" title="{{ genre.tooltip }}">
                                 {{ genre.name }}
@@ -35,8 +37,9 @@
                     <div class="row">
                         {% for feature in data.features %}
                             <div class="col-4 form-group">
-                                <label for="feature_{{ feature }}">{{ feature|title|to_spaces }}</label>
-                                <input type="text" class="form-control feature" id="feature_{{ feature }}"/>
+                                <label for="weight_{{ feature }}">{{ feature|title|to_spaces }}</label>
+                                <input type="text" class="form-control feature" id="weight_{{ feature }}"
+                                       name="weight_{{ feature }}"/>
                             </div>
                         {% endfor %}
                     </div>
@@ -44,7 +47,7 @@
             </div>
             <div class="row mt-3">
                 <div class="text-center w-100">
-                    <button type="submit" class="btn btn-large btn-primary">Submit</button>
+                    <input type="submit" class="btn btn-large btn-primary"/>
                 </div>
             </div>
         </form>

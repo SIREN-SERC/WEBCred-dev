@@ -1,3 +1,4 @@
+import dj_database_url
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -6,7 +7,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
@@ -31,12 +32,5 @@ ROOT_URLCONF = 'urls'
 WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webcred',
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.parse(os.getenv('POSTGRES_URL'))
 }
