@@ -1,9 +1,5 @@
 - Set up the environment using [pipenv](https://github.com/pypa/pipenv)
-- Create a postgres database named "webcred"
-- Populate the following environment variables:
-    - SECRET_KEY
-    - POSTGRES_USER
-    - POSTGRES_PASSWORD
-- Start the application using `python manage.py runserver`
+- Populate the environment variables listed in `.env.sample` into `.env`
+- Run `python app.py runserver` to start the webserver
 
 Based on the original WEBCred application [here](https://github.com/Shriyanshagro/WEBCred)
