@@ -1,6 +1,6 @@
 - Use [pipenv](https://github.com/pypa/pipenv) to set up the python environment
 - Create a postgres database named "webcred"
-- Populate the following environment variables before starting the application:
+- Populate the following environment variables:
     - SECRET_KEY
     - POSTGRES_USER
     - POSTGRES_PASSWORD
