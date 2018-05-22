@@ -1,0 +1,50 @@
+{
+  "features": [
+    "advertisements", "broken_links", "internationalization",
+    "internet_domain", "inlinks", "modified_date_time",
+    "real_world_presence", "outlinks", "misspell",
+    "text_to_image_ratio", "responsive_design", "page_load_time"
+  ],
+  "genres": [
+    {
+      "name": "Shop",
+      "tooltip": "Production Information, Shopping",
+      "weights": [
+        0.00, 9.09, 9.09,
+        9.09, 9.09, 9.09,
+        9.09, 9.09, 9.09,
+        9.09, 9.09, 9.09
+      ]
+    },
+    {
+      "name": "Help",
+      "tooltip": "QA Forum, FAQs",
+      "weights": [
+        14.285, 0.0000, 14.285,
+        14.285, 14.285, 14.285,
+        14.285, 0.0000, 0.0000,
+        0.0000, 14.285, 0.0000
+      ]
+    },
+    {
+      "name": "Portrayal-Individual",
+      "tooltip": "Companies, Universities, Government, Brochures",
+      "weights": [
+        9.09, 9.09, 0.00,
+        9.09, 9.09, 9.09,
+        9.09, 9.09, 9.09,
+        9.09, 9.09, 9.09
+      ]
+    },
+    {
+      "name": "Articles",
+      "tooltip": "Research, Newspaper, Reports",
+      "weights": [
+        8.33, 8.33, 8.33,
+        8.33, 8.33, 8.33,
+        8.33, 8.33, 8.33,
+        8.33, 8.33, 8.33
+      ]
+    }
+  ]
+}
