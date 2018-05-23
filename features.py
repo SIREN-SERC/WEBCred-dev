@@ -1,61 +1,52 @@
-from app import huey
+import time
+import inspect
 
 
-@huey.task()
-def advertisements():
-    pass
+def advertisements(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def broken_links():
-    pass
+def broken_links(store):
+    time.sleep(1)
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def internationalization():
-    pass
+def internationalization(store):
+    time.sleep(1)
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def internet_domain():
-    pass
+def internet_domain(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def inlinks():
-    pass
+def inlinks(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def modified_date_time():
-    pass
+def modified_date_time(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def real_world_presence():
-    pass
+def real_world_presence(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def outlinks():
-    pass
+def outlinks(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def misspell():
-    pass
+def misspell(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def text_to_image_ratio():
-    pass
+def text_to_image_ratio(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def responsive_design():
-    pass
+def responsive_design(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))
 
 
-@huey.task()
-def page_load_time():
-    pass
+def page_load_time(store):
+    store[inspect.stack()[0][3]] = int(round(time.time() * 1000))

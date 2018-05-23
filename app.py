@@ -1,11 +1,8 @@
-from django.core.management import execute_from_command_line
-from dotenv import load_dotenv, find_dotenv
-from huey import RedisHuey
-
 import sys
-import os
+from dotenv import load_dotenv, find_dotenv
+from django.core.management import execute_from_command_line
 
 
-load_dotenv(dotenv_path=find_dotenv(), verbose=True)
-huey = RedisHuey('webcred', host=os.getenv('REDIS_URL'))
-execute_from_command_line(sys.argv)
+if __name__ == "__main__":
+    load_dotenv(dotenv_path=find_dotenv(), verbose=True)
+    execute_from_command_line(sys.argv)
