@@ -29,7 +29,7 @@ STATIC_ROOT = 'static'
 
 ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'app.wsgi'
 
 DATABASES = {
     'default': dj_database_url.parse(os.getenv('POSTGRES_URL'))
