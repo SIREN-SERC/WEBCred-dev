@@ -18,7 +18,7 @@ def home(request):
 
 
 def assess(request):
-    url = request.POST.get('url')
+    # url = request.POST.get('url')
     f_weights = {
         ('_'.join(k.split('_')[1:])): float(v)
         for k, v in request.POST.items()
@@ -45,4 +45,5 @@ def assess(request):
 
     result = f_values.copy()
 
-    return JsonResponse(OrderedDict(sorted(result.items(), key=operator.itemgetter(1))))
+    return JsonResponse(OrderedDict(sorted(result.items(),
+                                           key=operator.itemgetter(1))))
