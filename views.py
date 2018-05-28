@@ -1,7 +1,5 @@
 import json
 import inspect
-import operator
-from collections import OrderedDict
 from django.shortcuts import render
 from django.http import JsonResponse
 from multiprocessing import Process, Manager
@@ -18,7 +16,6 @@ def home(request):
 
 
 def assess(request):
-    # url = request.POST.get('url')
     f_weights = {
         ('_'.join(k.split('_')[1:])): float(v)
         for k, v in request.POST.items()
@@ -31,13 +28,14 @@ def assess(request):
     ]
 
     manager = Manager()
-
-    f_processes = []
     f_values = manager.dict()
 
-    for func in f_functions:
-        proc = Process(target=func, args=(f_values,))
-        f_processes.append(proc)
+    f_processes = [
+        Process(target=func, args=(request.data, f_values))
+        for func in f_functions
+    ]
+
+    for proc in f_processes:
         proc.start()
 
     for proc in f_processes:
@@ -45,5 +43,4 @@ def assess(request):
 
     result = f_values.copy()
 
-    return JsonResponse(OrderedDict(sorted(result.items(),
-                                           key=operator.itemgetter(1))))
+    return JsonResponse(result)

@@ -10,16 +10,20 @@ ALLOWED_HOSTS = []
 DEBUG = os.environ.get('DEBUG')
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware'
+    'django.middleware.csrf.CsrfViewMiddleware',
+
+    'utilities.middleware.preprocess'
 ]
+
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': ['templates'],
     'OPTIONS': {
         'libraries': {
-            'filters': 'filters'
+            'filters': 'utilties.filters'
         }
     }
 }]
@@ -32,5 +36,5 @@ ROOT_URLCONF = 'urls'
 WSGI_APPLICATION = 'app.wsgi'
 
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv('POSTGRES_URL'))
+    'default': dj_database_url.parse(os.getenv('DB_URL'))
 }

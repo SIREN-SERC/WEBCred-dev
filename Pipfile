@@ -11,6 +11,11 @@ django = "*"
 "psycopg2-binary" = "*"
 python-dotenv = "*"
 dj-database-url = "*"
+requests = "*"
+lxml = "*"
+cssselect = "*"
+tldextract = "*"
+arrow = "*"
 
 [requires]
 python_version = "3.6"
