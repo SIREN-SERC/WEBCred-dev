@@ -9,21 +9,25 @@ ALLOWED_HOSTS = []
 
 DEBUG = os.environ.get('DEBUG')
 
+INSTALLED_APPS = [
+    'webcred'
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
 
-    'utilities.middleware.preprocess'
+    'webcred.utilities.middleware.preprocess'
 ]
 
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': ['templates'],
+    'APP_DIRS': True,
     'OPTIONS': {
         'libraries': {
-            'filters': 'utilties.filters'
+            'filters': 'webcred.utilities.filters'
         }
     }
 }]
@@ -31,9 +35,9 @@ TEMPLATES = [{
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'webcred.urls'
 
-WSGI_APPLICATION = 'app.wsgi'
+WSGI_APPLICATION = 'manage.wsgi'
 
 DATABASES = {
     'default': dj_database_url.parse(os.getenv('DB_URL'))

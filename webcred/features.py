@@ -11,10 +11,13 @@ from multiprocessing import Process, Manager
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
+from .utilities.decorators import feature
 
+
+@feature
 def advertisements(data, store):
 
-    with open('data/easylist.txt') as f:
+    with open('webcred/data/easylist.txt') as f:
         # elemhide rules are prefixed by ## in the filter syntax
         css_rules = [line[2:] for line in f if line[:2] == "##"]
 
@@ -36,6 +39,7 @@ def advertisements(data, store):
     store['advertisements'] = ad_count
 
 
+@feature
 def broken_links(data, store):
 
     def get_status_code(url, store):
@@ -88,6 +92,7 @@ def broken_links(data, store):
 
 
 # TODO: Add internationalization
+@feature
 def internationalization(data, store):
     time.sleep(1)
     store['internationalization'] = int(round(time.time() * 1000))
@@ -101,11 +106,13 @@ def internet_domain(data, store):
 
 
 # TODO: Add inlinks
+@feature
 def inlinks(data, store):
 
     store['inlinks'] = int(round(time.time() * 1000))
 
 
+@feature
 def modified_date_time(data, store):
 
     try:
@@ -122,6 +129,7 @@ def modified_date_time(data, store):
 
 
 # TODO: Add real_world_presence
+@feature
 def real_world_presence(data, store):
 
     store['real_world_presence'] = int(round(time.time() * 1000))
@@ -157,12 +165,14 @@ def outlinks(data, store):
 
 
 # TODO: Add misspell
+@feature
 def misspell(data, store):
 
     store['misspell'] = int(round(time.time() * 1000))
 
 
 # TODO: Add text_to_image_ratio [HOW???]
+@feature
 def text_to_image_ratio(data, store):
 
     domain = tldextract.extract(data['url']).domain
@@ -185,6 +195,7 @@ def text_to_image_ratio(data, store):
     store['text_to_image_ratio'] = '???'
 
 
+@feature
 def responsive_design(data, store):
 
     api_url = 'https://searchconsole.googleapis.com/v1/urlTestingTools/' \
@@ -205,11 +216,12 @@ def responsive_design(data, store):
     store['responsive_design'] = state
 
 
+@feature
 def page_load_time(data, store):
 
     state = subprocess.check_output(
         './phantomjs loadspeed.js {}'.format(data['url']).split(),
-        cwd=os.path.join(settings.BASE_DIR, 'utilities')
+        cwd=os.path.join(settings.BASE_DIR, 'webcred', 'utilities')
     ).decode().strip()
 
     if state.isdigit():
@@ -219,6 +231,7 @@ def page_load_time(data, store):
 
 
 # TODO: Find some use for pagespeed
+@feature
 def pagespeed_score(data, store):
 
     api_url = 'https://www.googleapis.com/pagespeedonline/v4/runPagespeed'
