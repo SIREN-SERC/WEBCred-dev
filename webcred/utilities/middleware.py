@@ -17,7 +17,7 @@ def preprocess(get_response):
         document = lxml.html.fromstring(response.text)
 
         request.data = {
-            'url': url,
+            'url': response.url,
             'res': response,
             'doc': document
         }

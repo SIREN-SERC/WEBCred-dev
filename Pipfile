@@ -5,6 +5,7 @@ name = "pypi"
 
 [dev-packages]
 "flake8" = "*"
+pylint = "*"
 
 [packages]
 django = "*"
@@ -16,6 +17,7 @@ lxml = "*"
 cssselect = "*"
 tldextract = "*"
 arrow = "*"
+nltk = "*"
 
 [requires]
 python_version = "3.6"

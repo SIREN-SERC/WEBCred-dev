@@ -1,8 +1,8 @@
 import json
 import inspect
-from django.shortcuts import render
 from django.http import JsonResponse
 from multiprocessing import Process, Manager
+from django.shortcuts import render
 
 from webcred import features
 from webcred.models import Record

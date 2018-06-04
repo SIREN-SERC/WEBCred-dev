@@ -5,8 +5,8 @@ import requests
 import cssselect
 import tldextract
 import subprocess
-from django.conf import settings
 from urllib.parse import urljoin
+from django.conf import settings
 from multiprocessing import Process, Manager
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
@@ -91,11 +91,18 @@ def broken_links(data, store):
     store['broken_links'] = broken_count
 
 
-# TODO: Add internationalization
 @feature
 def internationalization(data, store):
-    time.sleep(1)
-    store['internationalization'] = int(round(time.time() * 1000))
+
+    xpath_rules = [
+        '//*/@lang',
+        '//*/@hreflang'
+    ]
+
+    xpath_query = '|'.join(xpath_rules)
+    languages = data['doc'].xpath(xpath_query)
+
+    store['internationalization'] = len(set(languages))
 
 
 def internet_domain(data, store):
@@ -115,17 +122,14 @@ def inlinks(data, store):
 @feature
 def modified_date_time(data, store):
 
-    try:
-        state = data['res'].headers['Last-Modified']
-    except KeyError:
-        res = requests.get('http://archive.org/wayback/available',
-                           params={
-                               'url': data['url']
-                           }).json()
-        state = arrow.get(res['archived_snapshots']['closest']['timestamp'],
-                          'YYYYMMDDHHmmss').timestamp
+    res = requests.get('http://archive.org/wayback/available',
+                       params={
+                           'url': data['url']
+                       }).json()
+    mod_time = arrow.get(res['archived_snapshots']['closest']['timestamp'],
+                         'YYYYMMDDHHmmss').timestamp
 
-    store['modified_date_time'] = state
+    store['modified_date_time'] = mod_time
 
 
 # TODO: Add real_world_presence
@@ -167,32 +171,13 @@ def outlinks(data, store):
 # TODO: Add misspell
 @feature
 def misspell(data, store):
+    pass
 
-    store['misspell'] = int(round(time.time() * 1000))
 
-
-# TODO: Add text_to_image_ratio [HOW???]
+# TODO: Add text_to_image_ratio
 @feature
 def text_to_image_ratio(data, store):
-
-    domain = tldextract.extract(data['url']).domain
-    validate = URLValidator()
-
-    # text_size = len(data['res'].text)
-    # image_size = 0
-
-    image_links_rel = data['doc'].xpath('//img/@src')
-    image_links_abs = []
-    for link in image_links_rel:
-        try:
-            validate(link)
-        except ValidationError:
-            link = urljoin(data['url'], link)
-        finally:
-            if tldextract.extract(link).domain != domain:
-                image_links_abs.append(link)
-
-    store['text_to_image_ratio'] = '???'
+    pass
 
 
 @feature
