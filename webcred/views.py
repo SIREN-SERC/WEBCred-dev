@@ -29,17 +29,20 @@ def assess(request):
     if record is not None:
         return JsonResponse(record.dump)
 
+    # extract weights from POST data
     f_weights = {
         ('_'.join(k.split('_')[1:])): float(v)
         for k, v in request.POST.items()
         if k.startswith('weight_') and v != '0'
     }
 
+    # map function objects for all features
     f_functions = [
         f[1] for f in inspect.getmembers(features)
         if f[0] in f_weights.keys()
     ]
 
+    # create Process objects for all features
     f_processes = [
         Process(target=func, args=(request.data, f_values))
         for func in f_functions
