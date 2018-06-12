@@ -80,11 +80,9 @@ def broken_links(data, store):
     for proc in processes:
         proc.join()
 
-    results = [code for code in status_codes]
-
     # 4xx, 5xx status codes indicate errors
     broken_count = 0
-    for result in results:
+    for result in status_codes:
         if int(str(result)[:1]) in [4, 5]:
             broken_count += 1
 
