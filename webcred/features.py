@@ -11,7 +11,7 @@ from multiprocessing import Process, Manager
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
-from .utilities.decorators import feature
+from webcred.utilities.decorators import feature
 
 
 @feature
