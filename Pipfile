@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+"flake8" = "*"
+pylint = "*"
+
+[packages]
+django = "*"
+"psycopg2-binary" = "*"
+python-dotenv = "*"
+dj-database-url = "*"
+requests = "*"
+lxml = "*"
+cssselect = "*"
+tldextract = "*"
+arrow = "*"
+nltk = "*"
+
+[requires]
+python_version = "3.6"
