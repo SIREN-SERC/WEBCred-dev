@@ -4,3 +4,4 @@ __pycache__/
 
 .env
 .DS_Store
+stanford-corenlp-full-2018-02-27/

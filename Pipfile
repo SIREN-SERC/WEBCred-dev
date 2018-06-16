@@ -18,6 +18,11 @@ cssselect = "*"
 tldextract = "*"
 arrow = "*"
 nltk = "*"
+stanfordcorenlp = "*"
+gensim = "*"
+"bs4" = "*"
+scikit-learn = "*"
+kpex = {git = "https://github.com/christophfeinauer/kpex"}
 
 [requires]
 python_version = "3.6"

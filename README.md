@@ -24,11 +24,31 @@ with correct values.
     
     `$:python manage.py migrations`
 
-- Start the webserver
+- Download Stanford CoreNLP Library
     
-    `$:python manage.py runserver`
+    `$: wget http://nlp.stanford.edu/software/stanford-corenlp-full-2018-02-27.zip`
+    `$: unzip stanford-corenlp-full-2018-02-27.zip -d stanford-corenlp-full`
     
+    Install the JDK [Instructions](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html)
+    
+- Install needed nltk data packages in Python:
 
+    ```
+    import nltk
+    nltk.download('punkt')
+    nltk.download('averaged_perceptron_tagger')
+    nltk.download('wordnet')
+    nltk.download('stopwords')
+    ```
+
+- Start the CoreNLP server
+
+    - `$: cd stanford-corenlp-full-2018-02-27 && java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -annotators "tokenize,ssplit,pos,lemma,parse,sentiment" -port 9000 -timeout 30000 --add-modules java.se.ee`
+
+- Start the webserver
+
+    - `$:cd path_to/WEBCred && python manage.py runserver`
+ 
 
 Based on the original WEBCred application [here](https://github.com/Shriyanshagro/WEBCred)
 
