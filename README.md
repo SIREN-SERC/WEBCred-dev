@@ -48,7 +48,6 @@ with correct values.
 - Start the webserver
 
     - `$:cd path_to/WEBCred && python manage.py runserver`
- 
 
 Based on the original WEBCred application [here](https://github.com/Shriyanshagro/WEBCred)
 

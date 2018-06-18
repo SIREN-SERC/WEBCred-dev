@@ -20,7 +20,6 @@ arrow = "*"
 nltk = "*"
 stanfordcorenlp = "*"
 gensim = "*"
-"bs4" = "*"
 scikit-learn = "*"
 kpex = {git = "https://github.com/christophfeinauer/kpex"}
 

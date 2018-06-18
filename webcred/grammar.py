@@ -21,17 +21,47 @@ class StanfordNLP:
             'options' : {"ner.useSUTime": False},
         }
 
+    # get tokens of sentence
     def word_tokenize(self, sentence):
         return self.nlp.word_tokenize(sentence)
 
+    # get pos counts for a given sentence
     def pos(self, sentence):
-        return self.nlp.pos_tag(sentence)
+        posCount = {}
+        tags_list= self.nlp.pos_tag(sentence)
+        for items in tags_list:
+            if items[1] in posCount.keys():
+                posCount[items[1]] += 1
+            else:
+                posCount[items[1]] = 1
+
+        return posCount
+
+    # get sentiment(positive, neutral, negative) count for given sentence
+    def sentiment(self, sentence):
+        val = self.nlp._request(annotators='sentiment', data=sentence)
+        count = {}
+        for sentence in val['sentences']:
+            sentiment = sentence['sentiment']
+            if sentiment not in count.keys():
+                count[sentiment] = 0
+            else:
+                count[sentiment] += 1
+        return count
 
     def ner(self, sentence):
         return self.nlp.ner(sentence)
 
     def parse(self, sentence):
         return self.nlp.parse(sentence)
+
+    def question(self, sentence):
+        parsed = self.parse(sentence)[:15].split('(')
+        if 'SQ ' in parsed:
+            return "Inverted question"
+        elif 'SBARQ\n' in parsed:
+            return "Direct question"
+        return "No question"
 
     def dependency_parse(self, sentence):
         return self.nlp.dependency_parse(sentence)
@@ -57,12 +87,13 @@ class StanfordNLP:
 if __name__ == '__main__':
     sNLP = StanfordNLP()
     text = 'A blog post using Stanford CoreNLP Server. Visit www.khalidalnajjar.com for more details.'
+    text += ' ' + text
     # print("Annotate:", sNLP.annotate(text))
     # print("POS:", sNLP.pos(text))
     # print("Tokens:", sNLP.word_tokenize(text))
     # print("NER:", sNLP.ner(text))
     # print("Parse:", sNLP.parse(text))
     # print("Dep Parse:", sNLP.dependency_parse(text))
-    import pdb
-    pdb.set_trace()
-    sNLP.getnlp()._request(annotators='natlog', data=text)
+    print(sNLP.question(text))
+    # val = sNLP.getnlp()._request(annotators='sentiment', data=text)
+
