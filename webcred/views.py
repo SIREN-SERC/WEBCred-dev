@@ -66,5 +66,6 @@ def assess(request):
     compute_process = Process(target=compute, args=(f_values,))
     compute_process.start()
     compute_process.join(timeout=int(os.getenv('FEATURE_TIMEOUT')))
+    compute_process.terminate()
 
     return JsonResponse(f_values.copy())
