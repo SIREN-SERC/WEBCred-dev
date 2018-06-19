@@ -114,7 +114,7 @@ def internet_domain(data, store):
 @feature
 def inlinks(data, store):
 
-    store['inlinks'] = int(round(time.time() * 1000))
+    store['inlinks'] = None
 
 
 @feature
@@ -134,7 +134,7 @@ def modified_date_time(data, store):
 @feature
 def real_world_presence(data, store):
 
-    store['real_world_presence'] = int(round(time.time() * 1000))
+    store['real_world_presence'] = None
 
 
 def outlinks(data, store):
