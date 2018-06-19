@@ -1,5 +1,5 @@
 # Installation
-- Install the python dependencies using [pipenv](https://github.com/pypa/pipenv)
+- Install the python dependencies using [pipenv](https://github.com/pypa/pipenv#installation)
 ```
     $ pipenv install
 ```
