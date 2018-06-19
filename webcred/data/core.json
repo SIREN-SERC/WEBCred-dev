@@ -9,42 +9,74 @@
     {
       "name": "Shop",
       "tooltip": "Production Information, Shopping",
-      "weights": [
-        0.00, 9.09, 9.09,
-        9.09, 9.09, 9.09,
-        9.09, 9.09, 9.09,
-        9.09, 9.09, 9.09
-      ]
+      "weights": {
+        "advertisements": 0.00,
+        "broken_links": 9.09,
+        "internationalization": 9.09,
+        "internet_domain": 9.09,
+        "inlinks": 9.09,
+        "modified_date_time": 9.09,
+        "real_world_presence": 9.09,
+        "outlinks": 9.09,
+        "misspell": 9.09,
+        "text_to_image_ratio": 9.09,
+        "responsive_design": 9.09,
+        "page_load_time": 9.09
+      }
     },
     {
       "name": "Help",
       "tooltip": "QA Forum, FAQs",
-      "weights": [
-        14.285, 0.0000, 14.285,
-        14.285, 14.285, 14.285,
-        14.285, 0.0000, 0.0000,
-        0.0000, 14.285, 0.0000
-      ]
+      "weights": {
+        "advertisements": 14.285,
+        "broken_links": 0.000,
+        "internationalization": 14.285,
+        "internet_domain": 14.285,
+        "inlinks": 14.285,
+        "modified_date_time": 14.285,
+        "real_world_presence": 14.285,
+        "outlinks": 0.000,
+        "misspell": 0.000,
+        "text_to_image_ratio": 0.000,
+        "responsive_design": 14.285,
+        "page_load_time": 0.000
+      }
     },
     {
       "name": "Portrayal-Individual",
       "tooltip": "Companies, Universities, Government, Brochures",
-      "weights": [
-        9.09, 9.09, 0.00,
-        9.09, 9.09, 9.09,
-        9.09, 9.09, 9.09,
-        9.09, 9.09, 9.09
-      ]
+      "weights": {
+        "advertisements": 9.09,
+        "broken_links": 9.09,
+        "internationalization": 0.00,
+        "internet_domain": 9.09,
+        "inlinks": 9.09,
+        "modified_date_time": 9.09,
+        "real_world_presence": 9.09,
+        "outlinks": 9.09,
+        "misspell": 9.09,
+        "text_to_image_ratio": 9.09,
+        "responsive_design": 9.09,
+        "page_load_time": 9.09
+      }
     },
     {
       "name": "Articles",
       "tooltip": "Research, Newspaper, Reports",
-      "weights": [
-        8.33, 8.33, 8.33,
-        8.33, 8.33, 8.33,
-        8.33, 8.33, 8.33,
-        8.33, 8.33, 8.33
-      ]
+      "weights": {
+        "advertisements": 8.33,
+        "broken_links": 8.33,
+        "internationalization": 8.33,
+        "internet_domain": 8.33,
+        "inlinks": 8.33,
+        "modified_date_time": 8.33,
+        "real_world_presence": 8.33,
+        "outlinks": 8.33,
+        "misspell": 8.33,
+        "text_to_image_ratio": 8.33,
+        "responsive_design": 8.33,
+        "page_load_time": 8.33
+      }
     }
   ]
 }

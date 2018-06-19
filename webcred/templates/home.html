@@ -80,11 +80,13 @@
 
 {% block scripts %}
     <script>
-        $("body").tooltip({selector: '[data-toggle=tooltip]'});
-        function populate_weights(genre) {
-            $(".feature").each(function(index) {
-                this.value = genre.weights[index]
-            })
-        }
+      $("body").tooltip({selector: '[data-toggle=tooltip]'});
+      function populate_weights(genre) {
+        $(".feature").each(function(index, element) {
+          let id = element.id;
+          let feature_name = id.substring(id.indexOf("_") + 1);
+          this.value = genre.weights[feature_name];
+        })
+      }
     </script>
 {% endblock %}
