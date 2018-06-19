@@ -100,7 +100,7 @@ def internationalization(data, store):
     xpath_query = '|'.join(xpath_rules)
     languages = data['doc'].xpath(xpath_query)
 
-    store['internationalization'] = len(set(languages))
+    store['internationalization'] = len(set([l.lower() for l in languages]))
 
 
 def internet_domain(data, store):
