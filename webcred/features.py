@@ -1,10 +1,12 @@
 import os
-import time
 import arrow
+import string
 import requests
 import cssselect
 import tldextract
 import subprocess
+from nltk.corpus import wordnet
+from html2text import html2text
 from urllib.parse import urljoin
 from django.conf import settings
 from multiprocessing import Process, Manager
@@ -12,6 +14,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
 from webcred.utilities.decorators import feature
+from webcred.utilities.misc import clean_html
 
 
 @feature
@@ -166,10 +169,23 @@ def outlinks(data, store):
     store['outlinks'] = len(external_links)
 
 
-# TODO: Add misspell
+# TODO: Handle specific POS tags
 @feature
 def misspell(data, store):
-    pass
+
+    cleanhtml = clean_html(data['res'].text)
+    text = html2text(cleanhtml)
+
+    misspell_count = 0
+    for word in text:
+        if word in string.punctuation or word.isspace():
+            continue
+        elif not wordnet.synsets(word):
+            print(word)
+            misspell_count += 1
+
+    store['misspell'] = misspell_count
+
 
 
 # TODO: Add text_to_image_ratio
