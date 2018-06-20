@@ -69,3 +69,9 @@ def assess(request):
     compute_process.terminate()
 
     return JsonResponse(f_values.copy())
+
+
+def check_genre(request):
+    return JsonResponse({
+        "genre": "Portrayal-Individual"
+    })

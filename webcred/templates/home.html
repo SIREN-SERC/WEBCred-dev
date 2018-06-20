@@ -22,6 +22,9 @@
             <p>Genre</p>
             <div class="row">
                 <div class="col-3">
+                    <div class="text-center">
+                        <a href="#" onclick="check_genre()" class="btn btn-primary my-4">Check Genre</a>
+                    </div>
                     {% for genre in data.genres %}
                         <div class="form-check" onclick="populate_weights({{ genre }})">
                             <input class="form-check-input" type="radio" name="genre" id="genre_{{ genre.name }}"
@@ -80,13 +83,24 @@
 
 {% block scripts %}
     <script>
+
       $("body").tooltip({selector: '[data-toggle=tooltip]'});
+
       function populate_weights(genre) {
         $(".feature").each(function(index, element) {
           let id = element.id;
           let feature_name = id.substring(id.indexOf("_") + 1);
           this.value = genre.weights[feature_name];
         })
+      }
+
+      function check_genre() {
+        fetch("{% url 'check_genre' %}")
+          .then(res => res.json())
+          .then(data => {
+            $(`#genre_${data.genre}`).click()
+          });
+        return false;
       }
     </script>
 {% endblock %}
